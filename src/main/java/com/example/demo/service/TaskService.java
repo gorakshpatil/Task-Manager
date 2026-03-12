@@ -34,6 +34,7 @@ public class TaskService {
 		public Task updateTask(Long id , Task updatedtask) {
 				Task exesting=service.findById(id).orElseThrow();
 				exesting.setTitle(updatedtask.getTitle());
+				 exesting.setDescription(updatedtask.getDescription()); 
 				exesting.setStatus(updatedtask.getStatus());
 				exesting.setPriority(updatedtask.getPriority());
 				exesting.setDuedate(updatedtask.getDuedate());

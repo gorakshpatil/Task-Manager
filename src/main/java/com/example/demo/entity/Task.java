@@ -10,6 +10,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -49,7 +50,12 @@ public class Task {
 	@Column
 	private LocalDate duedate;
 	
-	@Column
-	private LocalDateTime createdAt= LocalDateTime.now();
+	@Column(updatable = false)
+	private LocalDateTime createdAt;
+	
+	@PrePersist
+	public void prePersist() {
+	    this.createdAt = LocalDateTime.now();
+	}
 
 }
